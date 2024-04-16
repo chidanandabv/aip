@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Montserrat } from 'next/font/google'
+import { Montserrat } from 'next/font/google';
+import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import{
@@ -31,30 +32,30 @@ const routes = [
     label: 'Conversation',
     icon: MessageSquare,
     href: '/conversation',
-    color: "text-violet-500",
+    color: "text-sky-500"
   },
   {
     label: 'Image Generation',
     icon: ImageIcon,
-    color: "text-pink-700",
-    href: '/image',
+    color: "text-sky-500",
+    href: '/image'
   },
   {
     label: 'Video Generation',
     icon: VideoIcon,
-    color: "text-orange-700",
+    color: "text-sky-500",
     href: '/video',
   },
   {
     label: 'Music Generation',
     icon: Music,
-    color: "text-emerald-500",
+    color: "text-sky-500",
     href: '/music',
   },
   {
     label: 'Code Generation',
     icon: Code,
-    color: "text-green-700",
+    color: "text-sky-500",
     href: '/code',
   },
   {
@@ -66,6 +67,7 @@ const routes = [
 
 
   const sidebar =()=>{
+    const pathname =usePathname();
 
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
@@ -83,8 +85,8 @@ const routes = [
             <Link
               key={route.href} 
               href={route.href}
-              className="text-sm group flex p-3 w-full justify-start font-medium cursor-pointer
-               hover:text-white hover:bg-white/10 rounded-lg transition">
+              className={cn("text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition",pathname === route.href ? "text-white,bg-white/10":
+              "text-zinc-400")}>
               <div className="flex items-center flex-1">
                 <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
                 {route.label}
