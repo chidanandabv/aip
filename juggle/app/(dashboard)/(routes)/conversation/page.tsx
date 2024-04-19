@@ -8,7 +8,6 @@ import { formSchema } from "./constant";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader } from "@/components/loader";
 const ConversationPage = () => {
     // const router = useRouter();
     // const proModal = useProModal();
@@ -75,6 +74,10 @@ const ConversationPage = () => {
               </Button>
             </form>
           </Form>
+        </div>
+        <div className="space-y-4 mt-4">
+            messages content
+             
         </div>
                 </div>
 
