@@ -47,7 +47,7 @@ const dashboardpage =()=>{
         <div>
              <div className="mb-8 space-y-4 ">
                 <h2 className="text-2xl md:text-4xl font-bold text-center">Dive into the World of AI</h2>
-                <p className="text-muted-foregroud font-light text-sm md:text-lg text-center  ">Chat with the smartest AI-Juggle</p>
+                <p className="text-muted-foregroud  text-sm md:text-lg text-center text-violet-500 font-semibold ">Chat with the smartest AI-Juggle</p>
              </div>
              <div className="px-4 md:px-20 lg:px-32 space-y-4 ">
                 {tools.map((tool)=>(
