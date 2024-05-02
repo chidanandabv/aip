@@ -29,17 +29,12 @@ const routes = [
     color: "text-sky-500"
   },
   {
-    label: 'Conversation',
+    label: 'Q&A',
     icon: MessageSquare,
-    href: '/conversation',
+    href: '/Q&A',
     color: "text-sky-500"
   },
-  {
-    label: 'Image Generation',
-    icon: ImageIcon,
-    color: "text-sky-500",
-    href: '/image'
-  },
+  
   {
     label: 'Video Generation',
     icon: VideoIcon,
@@ -59,10 +54,12 @@ const routes = [
     href: '/code',
   },
   {
-    label: 'Settings',
-    icon: Settings,
-    href: '/settings',
-  } 
+    label: 'Image Generation',
+    icon: ImageIcon,
+    color: "text-sky-500",
+    href: '/image'
+  },
+  
 ];
 
 

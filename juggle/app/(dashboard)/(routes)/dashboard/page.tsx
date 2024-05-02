@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
  const tools=[{
-    label :"conversation",
+    label :"Q&A",
     icon:MessageSquare,
     color:"text-violet-500",
-    href:"/conversation"
+    href:"/Q&A"
 
  },
  {
@@ -46,7 +46,7 @@ const dashboardpage =()=>{
     return(
         <div>
              <div className="mb-8 space-y-4 ">
-                <h2 className="text-2xl md:text-4xl font-bold text-center">Dive into the World of AI</h2>
+                <h2 className="text-2xl md:text-4xl font-bold text-center text-[#a3a1a3] ">Dive into the World of AI</h2>
                 <p className="text-muted-foregroud  text-sm md:text-lg text-center text-violet-500 font-semibold ">Chat with the smartest AI-Juggle</p>
              </div>
              <div className="px-4 md:px-20 lg:px-32 space-y-4 ">

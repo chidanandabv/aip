@@ -1,18 +1,23 @@
 "use client";
 import * as z from "zod";
+import axios from "axios";
 import { Heading } from "@/components/heading";
 import { useForm } from "react-hook-form";
-import { MessageSquare } from "lucide-react";
+import { Music } from "lucide-react";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { formSchema } from "./constant";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-const ConversationPage = () => {
-    // const router = useRouter();
-    // const proModal = useProModal();
-    // const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
-  
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Empty } from "@/components/empty";  
+import {Loader}from "@/components/loader";
+
+ 
+const MusicPage = () => { 
+    const router = useRouter();
+    const [ music , setMusic] = useState<string>();
     const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
       defaultValues: {
@@ -21,15 +26,26 @@ const ConversationPage = () => {
     }); 
 
     const isLoading =form.formState.isSubmitted;
-    const onSubmit =async (values:z.infer<typeof formSchema>)=>{
-        console.log(values)
-    }
+
+    const onSubmit = async(values:z.infer<typeof formSchema>)=>{
+        try{
+            setMusic(undefined);
+            const response = await axios.post("/api/music",values);
+            setMusic(response.data.audio);
+            form.reset();
+        }catch(error:any){
+            console.log(error);
+        }finally{
+            router.refresh();
+        }
+    };
+    
     return ( 
         <div>
             <Heading
-            title="Conversation"
-            description="Our most advanced conversation model."
-            icon={MessageSquare}
+            title="Music Genration"
+            description="Our most advanced music  model."
+            icon={Music}
             iconColor="text-violet-500"
             bgColor="bg-violet-500/10"
             
@@ -62,21 +78,35 @@ const ConversationPage = () => {
                       <Input
                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading} 
-                        placeholder="Enter your potm here" 
+                        placeholder="Enter your prompt here" 
                         {...field}
                       />
                     </FormControl>
                   </FormItem>
                 )}
               />
-              <Button className="col-span-12 lg:col-span-2 w-full" type="submit" disabled={isLoading} size="icon">
+              <Button className="col-span-12 lg:col-span-2 w-full bg-[#7d2fc6] hover:bg-green-600" type="submit" disabled={isLoading} size="icon">
                 Generate
               </Button>
             </form>
           </Form>
         </div>
         <div className="space-y-4 mt-4">
-            messages content
+          {isLoading && (
+             <div className="p-8 rounded-lg- w-full flex items-center justify-center bg-muted">
+               <Loader/>
+             </div>
+          )}
+          {!music && !isLoading && (
+             <Empty label="No music genrated,"/>
+
+          )}
+          {music && (
+            <audio controls className="w-full mt-8">
+              <source src={music}/>
+
+            </audio>
+          )}
              
         </div>
                 </div>
@@ -88,4 +118,4 @@ const ConversationPage = () => {
      );
 }
  
-export default ConversationPage;
+export default MusicPage;

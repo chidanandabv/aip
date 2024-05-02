@@ -27,7 +27,7 @@ export const Heading =({
 
              </div>
              <div>
-             <h2 className=" text-3xl font-bold">
+             <h2 className=" text-3xl font-bold text-[#a3a1a3]">
                 {title}
 
              </h2>
